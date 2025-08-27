@@ -1,2 +1,2 @@
 # specification
-The PastelVG Specification
+The PastelVG Specification: A JSON-based vector graphics format.
