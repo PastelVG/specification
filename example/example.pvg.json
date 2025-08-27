@@ -1,1 +1,16 @@
+{
+  "$schema": "./schema/pastelvg.schema.json",
+  "pastelvg": "0.1",
+  "width": 200,
+  "height": 200,
+  "content": [
+    {
+      "type": "circle",
+      "cx": 100,
+      "cy": 100,
+      "r": 50,
+      "fill": "red"
+    }
+  ]
+}
 
