@@ -1,83 +1,160 @@
-# specification
-The PastelVG Specification: A JSON-based vector graphics format.
+# PastelVG Specification (v0.1)
 
-The PastelVG Specification - Version 0.1
-A minimal, JSON-based format for describing 2D vector graphics scenes.
+> A minimal, JSON-based format for describing 2D vector graphics scenes.
+> 
+---
 
-# 1. Introduction
+## 1. Introduction
 
-PastelVG is a declarative format for representing vector graphics using JSON. It is designed to be easier to read, write, and generate programmatically than XML-based formats like SVG.
+PastelVG is a declarative JSON format designed for learning, teaching, and building vector graphics in a structured, intuitive way.
 
-A valid PastelVG document is a JSON object.
+### Goals
 
-# 2. The Root Object
+- **Simplicity** – Easy to write, easy to teach.
+- **Structure** – JSON-native, predictable, and composable.
+- **Portability** – Designed to render across platforms (web, native, CLI).
+- **Interoperability** – Converts easily to/from SVG.
 
-The root object defines the canvas and contains an array of graphic elements.
+---
 
-Property	Type	Description	Required
-pastelvg	string	The version of the PastelVG spec used.	Yes
-width	number	The width of the canvas.	No
-height	number	The height of the canvas.	No
-viewBox	[number, number, number, number]	The viewbox of the canvas, as an array of four numbers [min-x, min-y, width, height].	No
-content	array	An array of graphic elements (objects) to render.	Yes
-Note: Either width/height or viewBox should be provided. If only width/height are provided, the viewBox is assumed to be [0, 0, width, height].
 
-# 3. Graphic Elements
+## 2. File Structure | Root Object
 
-Graphic elements are defined by objects within the content array (or a group's children array). Each element must have a type property.
+A PastelVG file is a single JSON object with the following top-level properties.
 
-# 3.1. Circle (type: "circle")
+| Property    | Type     | Description                                                                 | Required |
+|-------------|----------|-----------------------------------------------------------------------------|----------|
+| `pastelvg`  | string   | The spec version used (e.g., `"0.1"`).                                      | ✅ Yes   |
+| `width`     | number   | Canvas width in pixels.                                                     | ❌ No    |
+| `height`    | number   | Canvas height in pixels.                                                    | ❌ No    |
+| `viewBox`   | array    | `[x, y, width, height]` used to define coordinate space.                    | ❌ No    |
+| `content`   | array    | An array of visual elements (shapes, groups, etc.).                         | ✅ Yes   |
 
-Property	Type	Description	Required
-cx	number	The x-coordinate of the circle's center.	Yes
-cy	number	The y-coordinate of the circle's center.	Yes
-r	number	The radius of the circle.	Yes
-fill	string	The fill color of the circle (e.g., "red", "#FF0000").	No
-# 3.2. Rectangle (type: "rect")
+> Note: Either `width`/`height` or `viewBox` must be provided. If only `width` and `height` are provided, the `viewBox` is assumed to be `[0, 0, width, height]`.
 
-Property	Type	Description	Required
-x	number	The x-coordinate of the top-left corner.	Yes
-y	number	The y-coordinate of the top-left corner.	Yes
-width	number	The width of the rectangle.	Yes
-height	number	The height of the rectangle.	Yes
-fill	string	The fill color of the rectangle.	No
-# 3.3. Group (type: "group")
+---
 
-A group is a container element used to apply transformations to a set of elements.
+# 3. Core Elements
+Each item in content is an object with a type field. Supported types:
 
-Property	Type	Description	Required
-id	string	A unique name for the group.	No
-transform	array	An array defining a transformation. See §4.1.	No
-children	array	An array of graphic elements belonging to this group.	Yes
-$ #4. Styling and Transformations
-
-#4.1. Transformations
-
-The transform property is an array where the first element is the transform type and subsequent elements are its parameters.
-
-Transform	Array Format	Description
-translate	["translate", tx, ty]	Move the element by tx pixels horizontally and ty pixels vertically.
-Note: Future versions will support rotate, scale, and matrix.
-
-# 4.2. Basic Styling
-
-Property	Type	Description
-fill	string	A CSS color string defining the interior color of a shape.
-stroke	object	An object defining the stroke (outline). See below.
-Stroke Object
-
-Property	Type	Description
-width	number	The width of the stroke in pixels.
-color	string	A CSS color string for the stroke.
-Note: Future versions will support dasharray, linecap, etc.
-
-# 5. Example
-
-A valid PastelVG v0.1 document:
-
-json
+## 3.1 circle
+```
 {
-  "pastelvg": "1.0",
+  "type": "circle",
+  "cx": 100,
+  "cy": 100,
+  "r": 40,
+  "fill": "red",
+  "stroke": { "color": "black", "width": 2 }
+}
+```
+
+| Property | Type   | Description                                   | Required |
+| -------- | ------ | --------------------------------------------- | -------- |
+| `cx`     | number | X-coordinate of center                        | ✅ Yes    |
+| `cy`     | number | Y-coordinate of center                        | ✅ Yes    |
+| `r`      | number | Radius                                        | ✅ Yes    |
+| `fill`   | string | Fill color (e.g., `"red"`, `"#FF0000"`)       | ❌ No     |
+| `stroke` | object | Stroke object (see [§5.1](#51-stroke-object)) | ❌ No     |
+
+## 3.2 rect
+```
+{
+  "type": "rect",
+  "x": 10,
+  "y": 20,
+  "width": 200,
+  "height": 100,
+  "fill": "lightblue"
+}
+```
+| Property | Type   | Description          | Required |
+| -------- | ------ | -------------------- | -------- |
+| `x`      | number | X of top-left corner | ✅ Yes    |
+| `y`      | number | Y of top-left corner | ✅ Yes    |
+| `width`  | number | Width in pixels      | ✅ Yes    |
+| `height` | number | Height in pixels     | ✅ Yes    |
+| `fill`   | string | Fill color           | ❌ No     |
+
+
+
+## 3.3 group
+```
+{
+  "type": "group",
+  "transform": { "translate": [20, 30] },
+  "children": [ ... ]
+}
+```
+
+| Property    | Type  | Description                                         | Required |
+| ----------- | ----- | --------------------------------------------------- | -------- |
+| `transform` | array | Array-formatted transform (see [§4](#4-transforms)) | ❌ No     |
+| `children`  | array | Array of nested graphic elements                    | ✅ Yes    |
+
+
+
+## 3.4 text
+```
+{
+  "type": "text",
+  "x": 100,
+  "y": 200,
+  "content": [
+    { "text": "Hello ", "fontWeight": "normal" },
+    { "text": "world", "fontWeight": "bold" }
+  ],
+  "fontSize": 18,
+  "fill": "black"
+}
+```
+
+| Property   | Type   | Description                        | Required |
+| ---------- | ------ | ---------------------------------- | -------- |
+| `x`, `y`   | number | Position of text baseline          | ✅ Yes    |
+| `content`  | array  | Array of spans with `text` + style | ✅ Yes    |
+| `fontSize` | number | Font size in pixels                | ❌ No     |
+| `fill`     | string | Fill color                         | ❌ No     |
+
+
+# 4. Transforms
+All transforms are optional and composable. Order of application: TBD (likely SVG-like: scale → rotate → translate).
+
+```
+"transform": ["translate", 20, 30]
+```
+
+Future versions may support:
+["rotate", angle]
+["scale", sx, sy]
+["matrix", a, b, c, d, e, f]
+
+# 5. Styling
+- `fill`: `"red"` or gradient object
+- `stroke`: object with `color` / `width` / `dash`
+- `opacity`: 0.0–1.0
+
+% 5.1 Stroke Object
+```
+"stroke": {
+  "color": "#000000",
+  "width": 2
+}
+```
+
+
+| Property | Type   | Description            |
+| -------- | ------ | ---------------------- |
+| `color`  | string | Stroke color           |
+| `width`  | number | Stroke width in pixels |
+
+
+# 6. Full Example
+## 🔍 A Minimal PastelVG Scene
+
+```json
+{
+  "pastelvg": "0.1",
   "width": 200,
   "height": 200,
   "content": [
@@ -87,17 +164,40 @@ json
       "cy": 100,
       "r": 50,
       "fill": "red"
+    },
+    {
+      "type": "group",
+      "transform": ["translate", 20, 30],
+      "children": [
+        {
+          "type": "rect",
+          "x": 10,
+          "y": 10,
+          "width": 60,
+          "height": 40,
+          "fill": "blue"
+        }
+      ]
     }
   ]
 }
+```
 
-# 6. Future Considerations
+# 7. Future Considerations
+- Path elements (SVG-style `d` syntax)
+- Image embedding (via data URI or path)
+- Gradients (linearGradient, radialGradient)
+- Reusable symbols / templates
+- Accessibility attributes
 
-This is a minimal v0.1 specification. The following features are planned for future versions:
+# 8. Glossary
 
-Path element (type: "path")
-Text element
-Gradients and patterns
-Additional transformations (rotate, scale, skew)
-Clipping paths and masks
-More complex stroke and fill properties
+**Element** – A visual object on the canvas (e.g., a circle, rectangle, group).
+
+**Transform** – A mathematical operation (e.g., translate, rotate) applied to an element.
+
+**Scene** – The entire canvas of visual elements.
+
+**Group** – A container element that applies transforms or styles to multiple child elements.
+
+
