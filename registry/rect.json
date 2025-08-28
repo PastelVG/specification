@@ -1,1 +1,58 @@
-//rectangle
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pastelvg.github.io/specification/registry/elements/rect.json",
+  "title": "PastelVG Element: rect",
+  "type": "object",
+  "required": ["type", "x", "y", "width", "height"],
+  "properties": {
+    "type": { "const": "rect" },
+
+    "id": { "type": "string" },
+
+    "x": { "type": "number", "description": "Top-left X" },
+    "y": { "type": "number", "description": "Top-left Y" },
+    "width":  { "type": "number", "minimum": 0 },
+    "height": { "type": "number", "minimum": 0 },
+
+    "rx": { "type": "number", "minimum": 0, "description": "Corner radius X" },
+    "ry": { "type": "number", "minimum": 0, "description": "Corner radius Y" },
+
+    "fill":   { "type": "string", "description": "CSS color string" },
+    "stroke": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/stylable.json#/$defs/stroke"
+    },
+    "opacity": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/stylable.json#/$defs/opacity"
+    },
+    "transform": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/transformable.json#/$defs/transform"
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "rect",
+      "x": 10,
+      "y": 20,
+      "width": 200,
+      "height": 100,
+      "fill": "lightblue"
+    },
+    {
+      "type": "rect",
+      "x": 40,
+      "y": 40,
+      "width": 120,
+      "height": 60,
+      "rx": 8,
+      "ry": 8,
+      "stroke": { "color": "#222", "width": 2 },
+      "opacity": 0.9,
+      "transform": ["translate", 12, 6]
+    }
+  ],
+  "pastelvg": {
+    "status": "stable",
+    "since": "0.1"
+  }
+}
