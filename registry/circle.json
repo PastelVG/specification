@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pastelvg.github.io/specification/registry/elements/circle.json",
+  "title": "PastelVG Element: circle",
+  "type": "object",
+  "required": ["type", "cx", "cy", "r"],
+  "properties": {
+    "type": { "const": "circle" },
+
+    "cx": { "type": "number", "description": "Center X" },
+    "cy": { "type": "number", "description": "Center Y" },
+    "r":  { "type": "number", "minimum": 0 },
+
+    "fill":   { "type": "string", "description": "CSS color string" },
+    "stroke": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/stylable.json#/$defs/stroke"
+    },
+    "opacity": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/stylable.json#/$defs/opacity"
+    },
+    "transform": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/transformable.json#/$defs/transform"
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "circle",
+      "cx": 100,
+      "cy": 100,
+      "r": 50,
+      "fill": "red"
+    }
+  ],
+  "pastelvg": {
+    "status": "stable",
+    "since": "0.1"
+  }
+}
