@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pastelvg.github.io/specification/registry/traits/transformable.json",
+  "title": "PastelVG Trait: transformable",
+  "$defs": {
+    "transform": {
+      "type": "array",
+      "items": [
+        { "type": "string", "enum": ["translate", "rotate", "scale"] },
+        { "type": "number" },
+        { "type": "number" }
+      ],
+      "minItems": 2,
+      "maxItems": 3
+    }
+  }
+}
