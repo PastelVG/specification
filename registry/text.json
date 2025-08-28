@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pastelvg.github.io/specification/registry/elements/text.json",
+  "title": "PastelVG Element: text",
+  "type": "object",
+  "required": ["type", "x", "y", "content"],
+  "properties": {
+    "type": { "const": "text" },
+
+    "id": { "type": "string" },
+
+    "x": { "type": "number", "description": "Text start (baseline) X" },
+    "y": { "type": "number", "description": "Text baseline Y" },
+
+    "content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string" },
+          "fontWeight": { "type": "string", "enum": ["normal", "bold", "bolder", "lighter"] },
+          "fontStyle": { "type": "string", "enum": ["normal", "italic", "oblique"] },
+          "underline": { "type": "boolean" },
+          "fill": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "fontSize": { "type": "number", "minimum": 0 },
+    "fontFamily": { "type": "string" },
+    "textAnchor": { "type": "string", "enum": ["start", "middle", "end"] },
+
+    "fill":   { "type": "string", "description": "Text color (uses fill)" },
+    "stroke": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/stylable.json#/$defs/stroke"
+    },
+    "opacity": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/stylable.json#/$defs/opacity"
+    },
+    "transform": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/transformable.json#/$defs/transform"
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "text",
+      "x": 100,
+      "y": 200,
+      "content": [
+        { "text": "Hello ", "fontWeight": "normal" },
+        { "text": "world", "fontWeight": "bold" }
+      ],
+      "fontSize": 18,
+      "fill": "black"
+    }
+  ],
+  "pastelvg": {
+    "status": "stable",
+    "since": "0.1"
+  }
+}
