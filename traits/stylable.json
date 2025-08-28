@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pastelvg.github.io/specification/registry/traits/stylable.json",
+  "title": "PastelVG Trait: stylable",
+  "$defs": {
+    "opacity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "stroke": {
+      "type": "object",
+      "properties": {
+        "color": { "type": "string" },
+        "width": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}
