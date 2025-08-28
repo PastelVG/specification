@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pastelvg.github.io/specification/registry/elements/group.json",
+  "title": "PastelVG Element: group",
+  "type": "object",
+  "required": ["type", "children"],
+  "properties": {
+    "type": { "const": "group" },
+
+    "id": { "type": "string" },
+
+    "transform": {
+      "$ref": "https://pastelvg.github.io/specification/registry/traits/transformable.json#/$defs/transform"
+    },
+
+    "children": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          { "$ref": "https://pastelvg.github.io/specification/registry/elements/circle.json" },
+          { "$ref": "https://pastelvg.github.io/specification/registry/elements/rect.json" },
+          { "$ref": "https://pastelvg.github.io/specification/registry/elements/text.json" },
+          { "$ref": "https://pastelvg.github.io/specification/registry/elements/group.json" }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "type": "group",
+      "transform": ["translate", 20, 30],
+      "children": [
+        { "type": "rect", "x": 10, "y": 10, "width": 60, "height": 40, "fill": "blue" },
+        { "type": "circle", "cx": 50, "cy": 40, "r": 12, "fill": "gold" }
+      ]
+    }
+  ],
+  "pastelvg": {
+    "status": "stable",
+    "since": "0.1"
+  }
+}
