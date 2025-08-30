@@ -117,6 +117,42 @@ Each item in content is an object with a type field. Supported types:
 | `fill`     | string | Fill color                         | ❌ No     |
 
 
+## 3.5 ellipse
+```
+  "type": "ellipse",
+  "cx": 120,
+  "cy": 60,
+  "rx": 40,
+  "ry": 20,
+  "fill": "orange",
+  "stroke": { "color": "black", "width": 2 }
+```
+
+| Property | Type   | Description                                   | Required |
+| -------- | ------ | --------------------------------------------- | -------- |
+| `cx`     | number | X-coordinate of center                        | ✅ Yes    |
+| `cy`     | number | Y-coordinate of center                        | ✅ Yes    |
+| `rx`     | number | Radius                                        | ✅ Yes    |
+| `ry`     | number | Radius                                        | ✅ Yes    |
+| `fill`   | string | Fill color (e.g., `"red"`, `"#FF0000"`)       | ❌ No     |
+| `stroke` | object | Stroke object (see [§5.1](#51-stroke-object)) | ❌ No     |
+
+## 3.6 line
+```
+  "type": "line",
+  "p1": 10,80
+  "p2": 60,50
+  "stroke": { "color": "black", "width": 2 }
+```
+
+| Property | Type   | Description                                   | Required |
+| -------- | ------ | --------------------------------------------- | -------- |
+| `p1`     | number | point                       | ✅ Yes    |
+| `p2`     | number | point                       | ✅ Yes    |
+| `stroke` | object | Stroke object (see [§5.1](#51-stroke-object)) | ❌ No     |
+
+
+
 # 4. Transforms
 All transforms are optional and composable. Order of application: TBD (likely SVG-like: scale → rotate → translate).
 
@@ -137,11 +173,16 @@ Future versions may support:
 % 5.1 Stroke Object
 ```
 "stroke": {
-  "color": "#000000",
-  "width": 2
+  "color": "#000",
+  "width": 2,
+  "lineCap": "butt",       // "butt" | "round" | "square"
+  "lineJoin": "miter",     // "miter" | "round" | "bevel"
+  "miterLimit": 4,
+  "dash": [4, 2],          // pattern
+  "dashOffset": 0
 }
 ```
-
+Only color+width are commonly used; others are optional
 
 | Property | Type   | Description            |
 | -------- | ------ | ---------------------- |
