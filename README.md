@@ -25,6 +25,8 @@ A PastelVG file is a single JSON object with the following top-level properties.
 | Property    | Type     | Description                                                                 | Required |
 |-------------|----------|-----------------------------------------------------------------------------|----------|
 | `pastelvg`  | string   | The spec version used (e.g., `"0.1"`).                                      | ✅ Yes   |
+| `id`        | string   | id can be a string or number                                                | ✅ Yes   |
+| `name`      | string   | the name of the file                                                        | ❌ No    |
 | `width`     | number   | Canvas width in pixels.                                                     | ❌ No    |
 | `height`    | number   | Canvas height in pixels.                                                    | ❌ No    |
 | `viewBox`   | array    | `[x, y, width, height]` used to define coordinate space.                    | ❌ No    |
