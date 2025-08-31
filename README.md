@@ -159,7 +159,13 @@ Each item in content is an object with a type field. Supported types:
 All transforms are optional and composable. Order of application: TBD (likely SVG-like: scale → rotate → translate).
 
 ```
-"transform": ["translate", 20, 30]
+"transform": [
+  ["translate", 10, 20],
+  ["scale", 2],
+  ["rotate", 45, 100, 100],
+  ["skewX", 10],
+  ["skewY", -5]
+]
 ```
 
 Future versions may support:
