@@ -141,10 +141,17 @@ Each item in content is an object with a type field. Supported types:
 
 ## 3.6 line
 ```
-  "type": "line",
-  "p1": 10,80
-  "p2": 60,50
-  "stroke": { "color": "black", "width": 2 }
+{
+"type": "line",
+"id": "ln-1",
+"p1": [10, 80],
+"p2": [60, 50],
+"stroke": {
+ "color": "#000",
+"width": 2
+}
+ }
+
 ```
 
 | Property | Type   | Description                                   | Required |
