@@ -1,10 +1,4 @@
 # PastelVG Specification
-
-**Version:** 0.1  
-**Status:** Draft  
-**Maintainer:** [PastelVG Org](https://github.com/pastelvg)  
-**License:** [Apache 2.0](./LICENSE)
-
 ---
 
 ## 1. Overview
@@ -328,3 +322,5 @@ Only color+width are commonly used; others are optional
 **Group** – A container element that applies transforms or styles to multiple child elements.
 
 
+PastelVG is licensed under the [Apache License 2.0](./LICENSE).  
+Copyright © 2025 Aeon Development Group.
