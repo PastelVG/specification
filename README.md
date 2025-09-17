@@ -1,5 +1,14 @@
 # PastelVG Specification (v0.1)
 
+## License
+
+PastelVG is licensed under the [Apache License 2.0](./LICENSE).
+
+You are free to use, modify, and distribute this specification and its associated tools, even in commercial projects. No warranties are provided. See the LICENSE file for full details.
+
+Copyright © 2025 Aeon Development Group.
+
+
 > A minimal, JSON-based format for describing 2D vector graphics scenes.
 > 
 ---
