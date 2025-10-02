@@ -6,7 +6,7 @@ These blocks may generate other elements, define reusable functions, or respond 
 
 ---
 
-## 🧠 Overview
+## Overview
 
 Code elements represent logic, scripting, or generation behavior in a scene.
 
@@ -18,7 +18,7 @@ Each code block must include:
 
 ---
 
-## 🧩 Common Fields
+## Common Fields
 
 | Field      | Type   | Required | Description |
 |------------|--------|----------|-------------|
@@ -33,7 +33,7 @@ Each code block must include:
 
 ---
 
-## ✏️ Example: Swift DSL Geometry
+## Example: Swift DSL Geometry
 
 ```json
 {
