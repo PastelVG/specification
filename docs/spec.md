@@ -1,4 +1,17 @@
 # PastelVG Specification
+
+---
+
+## 0. Explicit Type System
+Each element (2D, 3D, or layout) should declare a type and a kind.
+
+| Property     | Type     | Required | Description |
+|--------------|----------|----------|-------------|
+| `type`       | string   | ✅        | General domain: shape2d, mesh3d, layout, code |
+| `kind`       | string   | ✅        | Specific subtype (like circle, plane, html-box)
+
+We will easily filter by domain and render, transform, etc 
+
 ---
 
 ## 1. Overview
