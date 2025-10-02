@@ -1,7 +1,7 @@
 # PastelVG Specification (v0.1)
 
 
-> A minimal, JSON-based format for describing 2D vector graphics scenes.
+> A minimal, JSON-based format for describing multi-domain graphics scenes.
 > 
 ---
 
@@ -10,11 +10,13 @@
 PastelVG is a declarative JSON format designed for learning, teaching, and building vector graphics in a structured, intuitive way.
 
 ### Goals
-
+- **Type-Aware** - Elements can be 2d, 3d, UI, etc
+- **Composable** - Nesting, grouping, transforming
+- **Extensible** - New element types (3d meshes, layout nodes, even code blocks)
 - **Simplicity** – Easy to write, easy to teach.
 - **Structure** – JSON-native, predictable, and composable.
 - **Portability** – Designed to render across platforms (web, native, CLI).
-- **Interoperability** – Converts easily to/from SVG.
+- **Interoperability** – Converts easily to/from formats, svg, gltf, html|css.
 
 
 ### View Full Specs
