@@ -87,6 +87,9 @@ Orients an object to face another point.  Use for cameras, lights, etc
 ### origin
 
 
+### pivot
+Want to rotate around a point? Use ["translate"] before ["rotate"] to simulate a pivot.
+
 ### Order Of Operations
 ```
 "transform": [
