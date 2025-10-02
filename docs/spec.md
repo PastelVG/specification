@@ -118,8 +118,7 @@ future; defs.md
 
 PastelVG is licensed under the [Apache License 2.0](../LICENSE).
 
-You are free to **use, modify, and distribute** this specification and its associated tools in **personal and educational projects**.  
-**Commercial use is not permitted** without express written permission from the copyright holder.
+You are free to use, modify, and distribute this specification and its associated tools, including in commercial and non-commercial projects.
 
 No warranties are provided. See the LICENSE file for full legal terms.
 
