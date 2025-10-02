@@ -108,6 +108,8 @@ Repeats the mesh in a grid
 | `count`   | array | Number of copies [x, y, z] |
 | `spacing` | array | Offset between copies      |
 
+“Spacing units follow the same spatial system as your scene (typically millimeters or scene units).”
+
 
 ### Modifier Stack Order
 Modifiers are applied in an array order, top to bottom
