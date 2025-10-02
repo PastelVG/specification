@@ -108,7 +108,7 @@ Supported Kind Types
 | `stroke` | object | ❌ No   | Stroke Object   |
 
 
-##Text
+## Text
 ```
 {
   "type": "shape2d",
@@ -134,7 +134,7 @@ Supported Kind Types
 | `stroke`   | object | ❌ No   | Stroke Object   |
 
 
-##Group
+## Group
 Groups are containers for multiple child shapes
 ```
 {
@@ -163,8 +163,8 @@ Groups are containers for multiple child shapes
 | `children`  | array | ✅ Yes        | Nested `shape2d` elements |
 
 
-##Styling
-###Stroke Object
+##S tyling
+### Stroke Object
 ```
 "stroke": {
   "color": "#000",
