@@ -15,7 +15,7 @@ Each mesh must include:
 
 ---
 
-## 🧩 Common Fields
+## Common Fields
 
 | Field       | Type     | Required | Description |
 |-------------|----------|----------|-------------|
@@ -34,7 +34,7 @@ Each mesh must include:
 
 ---
 
-### 🟫 Primitive: `box`
+### Primitive: `box`
 
 ```json
 {
