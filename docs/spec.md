@@ -7,8 +7,8 @@ Each element (2D, 3D, or layout) should declare a type and a kind.
 
 | Property     | Type     | Required | Description |
 |--------------|----------|----------|-------------|
-| `type`       | string   | ✅        | General domain: shape2d, mesh3d, layout, code |
-| `kind`       | string   | ✅        | Specific subtype (like circle, plane, html-box)
+| `domain`     | string   | ✅        | General domain: 2d, 3d, layout, code |
+| `kind`       | string   | ✅        | Specific doc type (3d scene)
 
 We will easily filter by domain and render, transform, etc 
 
@@ -16,20 +16,24 @@ We will easily filter by domain and render, transform, etc
 
 ## 1. Overview
 
-**PastelVG** is a declarative, minimal vector graphics format based on JSON.  
-It is designed to be predictable, portable, and human-readable — a simplified alternative to SVG for modern 2D graphics rendering.
+**PastelVG** is a declarative, minimal variety graphics format based on JSON.  
+It is designed to be predictable, portable, and human-readable — a simplified alternative to multiple formats for modern 2D graphics rendering.
+PastelVG is a declarative JSON format designed for learning, teaching, and building a variety graphics in a structured, intuitive way.
+
 
 > PastelVG is intended for educational tools, visual editors, creative coding, and interoperability with SVG-based workflows.
 
 ---
 
-## 2. Root Object
+## 2. Root Object (Top-Level Scene Object Should Be Domain-Neutral)
 
 Each `.pvg.json` file contains a single JSON object with the following properties:
 
 | Property     | Type     | Required | Description |
 |--------------|----------|----------|-------------|
 | `pastelvg`   | string   | ✅        | Format version (e.g., `"0.1"`) |
+| `domain`     | string   | ✅        | 3d, 2d, etc |
+| `kind`       | string   | ✅        | aeon3d-scene |
 | `id`         | string   | ✅        | Unique identifier for the document |
 | `name`       | string   | ❌        | Human-readable name |
 | `width`      | number   | ❌        | Canvas width |
@@ -37,6 +41,19 @@ Each `.pvg.json` file contains a single JSON object with the following propertie
 | `viewBox`    | array    | ❌        | `[minX, minY, width, height]` — overrides width/height if set |
 | `content`    | array    | ✅        | Array of elements (see below) |
 
+
+```
+{
+  "pastelvg": "0.2",
+  "domain": "3d",
+  "kind": "aeon3d-scene",
+  "id": "scene-001",
+  "name": "Extruded Roller Project",
+  "width": 800,
+  "height": 600,
+  "content": [ ... ]
+}
+```
 ---
 
 ## 3. Elements
@@ -46,13 +63,18 @@ Each type defines its own expected properties.
 
 Supported types:
 
-- `circle`
-- `rect`
-- `line`
-- `ellipse`
-- `text`
-- `group`
+- `shape2d`
+- `mesh3d`
+  
+Supported kind of 3d Shapes:
 
+- `primitive`
+- `extrusion`
+- `lathe`
+- `lithopane`
+- `sweep`
+- `imported`
+- 
 ---
 
 ### 3.1 Circle
@@ -60,82 +82,27 @@ Supported types:
 ```json
 {
   "type": "circle",
+  "kind": "shape2d",
   "cx": 100,
   "cy": 100,
   "r": 50,
   "fill": "red"
 }
-
-
-# PastelVG Specification (v0.1)
-
-## License
-
-PastelVG is licensed under the [Apache License 2.0](./LICENSE).
-
-You are free to use, modify, and distribute this specification and its associated tools, even in commercial projects. No warranties are provided. See the LICENSE file for full details.
-
-Copyright © 2025 Aeon Development Group.
-
-
-> A minimal, JSON-based format for describing 2D vector graphics scenes.
-> 
----
-
-## 1. Introduction
-
-PastelVG is a declarative JSON format designed for learning, teaching, and building vector graphics in a structured, intuitive way.
-
-### Goals
-
-- **Simplicity** – Easy to write, easy to teach.
-- **Structure** – JSON-native, predictable, and composable.
-- **Portability** – Designed to render across platforms (web, native, CLI).
-- **Interoperability** – Converts easily to/from SVG.
-
----
-
-
-## 2. File Structure | Root Object
-
-A PastelVG file is a single JSON object with the following top-level properties.
-
-| Property    | Type     | Description                                                                 | Required |
-|-------------|----------|-----------------------------------------------------------------------------|----------|
-| `pastelvg`  | string   | The spec version used (e.g., `"0.1"`).                                      | ✅ Yes   |
-| `id`        | string   | id can be a string or number                                                | ✅ Yes   |
-| `name`      | string   | the name of the file                                                        | ❌ No    |
-| `width`     | number   | Canvas width in pixels.                                                     | ❌ No    |
-| `height`    | number   | Canvas height in pixels.                                                    | ❌ No    |
-| `viewBox`   | array    | `[x, y, width, height]` used to define coordinate space.                    | ❌ No    |
-| `content`   | array    | An array of visual elements (shapes, groups, etc.).                         | ✅ Yes   |
-
-> Note: Either `width`/`height` or `viewBox` must be provided. If only `width` and `height` are provided, the `viewBox` is assumed to be `[0, 0, width, height]`.
-
----
-
-# 3. Core Elements
-Each item in content is an object with a type field. Supported types:
-
-## 3.1 circle
-```
-{
-  "type": "circle",
-  "cx": 100,
-  "cy": 100,
-  "r": 40,
-  "fill": "red",
-  "stroke": { "color": "black", "width": 2 }
-}
 ```
 
 | Property | Type   | Description                                   | Required |
 | -------- | ------ | --------------------------------------------- | -------- |
+| `id`       | string | unique identifier (example shape-001        | ✅ Yes    |
+| `type`     | string | shape2d                                     | ✅ Yes    |
+| `kind`     | string | circle                                      | ✅ Yes    |
 | `cx`     | number | X-coordinate of center                        | ✅ Yes    |
 | `cy`     | number | Y-coordinate of center                        | ✅ Yes    |
 | `r`      | number | Radius                                        | ✅ Yes    |
 | `fill`   | string | Fill color (e.g., `"red"`, `"#FF0000"`)       | ❌ No     |
 | `stroke` | object | Stroke object (see [§5.1](#51-stroke-object)) | ❌ No     |
+
+derivitives would have a source valye of the id, source: shape-001
+
 
 ## 3.2 rect
 ```
