@@ -130,7 +130,6 @@ Supported Kind Types
 | `content`  | array  | ✅ Yes        | Text spans           |
 | `fontSize` | number | ❌ No        | Font size            |
 | `fill`     | string | ❌ No        | Fill color           |
-| `fill`     | string | ❌ No       | Fill Color  |
 | `stroke`   | object | ❌ No   | Stroke Object   |
 
 
