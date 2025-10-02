@@ -1,6 +1,6 @@
 ---
 
-## ✂️ Coming Soon: Nice Slice
+## ✂️ Available Now: Nice Slice
 
 [**Nice Slice**](https://www.theniceslice.com) is a creative vector editing tool built natively for macOS and powered by PastelVG.
 
