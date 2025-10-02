@@ -12,13 +12,13 @@ Each 2D element must include:
 
 | Field       | Type             | Required | Description                                                   |
 | ----------- | ---------------- | -------- | ------------------------------------------------------------- |
-| `id`        | string           | ✅        | Unique identifier                                             |
-| `type`      | string           | ✅        | Must be `"shape2d"`                                           |
-| `kind`      | string           | ✅        | Element kind: `"circle"`, `"rect"`, etc.                      |
-| `transform` | array            | ❌        | Transform list (see [transforms.md](../shared/transforms.md)) |
-| `fill`      | string or object | ❌        | Fill color or gradient                                        |
-| `stroke`    | object           | ❌        | Stroke settings (see [§ Stroke Object](#stroke-object))       |
-| `opacity`   | number           | ❌        | 0–1 transparency                                              |
+| `id`        | string           | ✅ Yes        | Unique identifier                                             |
+| `type`      | string           | ✅ Yes        | Must be `"shape2d"`                                           |
+| `kind`      | string           | ✅ Yes       | Element kind: `"circle"`, `"rect"`, etc.                      |
+| `transform` | array            | ❌ No        | Transform list (see [transforms.md](../shared/transforms.md)) |
+| `fill`      | string or object | ❌ No       | Fill color or gradient                                        |
+| `stroke`    | object           | ❌ No        | Stroke settings (see [§ Stroke Object](#stroke-object))       |
+| `opacity`   | number           | ❌ No        | 0–1 transparency                                              |
 
 
 Supported Kind Types
@@ -37,9 +37,9 @@ Supported Kind Types
 ```
 | Property | Type   | Required | Description |
 | -------- | ------ | -------- | ----------- |
-| `cx`     | number | ✅        | Center X    |
-| `cy`     | number | ✅        | Center Y    |
-| `r`      | number | ✅        | Radius      |
+| `cx`     | number | ✅ Yes        | Center X    |
+| `cy`     | number | ✅ Yes        | Center Y    |
+| `r`      | number | ✅ Yes        | Radius      |
 
 
 ## Rect
@@ -58,10 +58,11 @@ Supported Kind Types
 
 | Property | Type   | Required | Description |
 | -------- | ------ | -------- | ----------- |
-| `x`      | number | ✅        | Top-left X  |
-| `y`      | number | ✅        | Top-left Y  |
-| `width`  | number | ✅        | Width       |
-| `height` | number | ✅        | Height      |
+| `x`      | number | ✅ Yes       | Top-left X  |
+| `y`      | number | ✅ Yes        | Top-left Y  |
+| `width`  | number | ✅ Yes        | Width       |
+| `height` | number | ✅ Yes        | Height      |
+| `fill`   | string | ❌ No       | Fill Color  |
 
 
 ## Line
@@ -80,9 +81,9 @@ Supported Kind Types
 ```
 | Property | Type  | Required | Description          |
 | -------- | ----- | -------- | -------------------- |
-| `p1`     | array | ✅        | Start point `[x, y]` |
-| `p2`     | array | ✅        | End point `[x, y]`   |
-
+| `p1`     | array | ✅ Yes   | Start point `[x, y]` |
+| `p2`     | array | ✅ Yes   | End point `[x, y]`   |
+| `stroke` | object | ❌ No   | Stroke Object   |
 
 ## Elipse
 
@@ -99,10 +100,10 @@ Supported Kind Types
 ```
 | Property | Type   | Required | Description |
 | -------- | ------ | -------- | ----------- |
-| `cx`     | number | ✅        | Center X    |
-| `cy`     | number | ✅        | Center Y    |
-| `rx`     | number | ✅        | Radius X    |
-| `ry`     | number | ✅        | Radius Y    |
+| `cx`     | number | ✅ Yes       | Center X    |
+| `cy`     | number | ✅ Yes        | Center Y    |
+| `rx`     | number | ✅ Yes        | Radius X    |
+| `ry`     | number | ✅ Yes       | Radius Y    |
 
 
 ##Text
@@ -123,10 +124,10 @@ Supported Kind Types
 
 | Property   | Type   | Required | Description          |
 | ---------- | ------ | -------- | -------------------- |
-| `x`, `y`   | number | ✅        | Text anchor position |
-| `content`  | array  | ✅        | Text spans           |
-| `fontSize` | number | ❌        | Font size            |
-| `fill`     | string | ❌        | Fill color           |
+| `x`, `y`   | number | ✅ Yes        | Text anchor position |
+| `content`  | array  | ✅ Yes        | Text spans           |
+| `fontSize` | number | ❌ No        | Font size            |
+| `fill`     | string | ❌ No        | Fill color           |
 
 
 ##Group
@@ -154,8 +155,8 @@ Groups are containers for multiple child shapes
 
 | Property    | Type  | Required | Description               |
 | ----------- | ----- | -------- | ------------------------- |
-| `transform` | array | ❌        | Applied to group          |
-| `children`  | array | ✅        | Nested `shape2d` elements |
+| `transform` | array | ❌ No        | Applied to group          |
+| `children`  | array | ✅ Yes        | Nested `shape2d` elements |
 
 
 ##Stroke Object
