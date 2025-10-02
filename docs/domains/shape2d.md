@@ -85,7 +85,7 @@ Supported Kind Types
 | `p2`     | array | ✅ Yes   | End point `[x, y]`   |
 | `stroke` | object | ❌ No   | Stroke Object   |
 
-## Elipse
+## Ellipse
 
 ```
 {
@@ -103,7 +103,9 @@ Supported Kind Types
 | `cx`     | number | ✅ Yes       | Center X    |
 | `cy`     | number | ✅ Yes        | Center Y    |
 | `rx`     | number | ✅ Yes        | Radius X    |
-| `ry`     | number | ✅ Yes       | Radius Y    |
+| `ry`     | number | ✅ Yes        | Radius Y    |
+| `fill`   | string | ❌ No       | Fill Color  |
+| `stroke` | object | ❌ No   | Stroke Object   |
 
 
 ##Text
@@ -128,6 +130,8 @@ Supported Kind Types
 | `content`  | array  | ✅ Yes        | Text spans           |
 | `fontSize` | number | ❌ No        | Font size            |
 | `fill`     | string | ❌ No        | Fill color           |
+| `fill`     | string | ❌ No       | Fill Color  |
+| `stroke`   | object | ❌ No   | Stroke Object   |
 
 
 ##Group
@@ -159,16 +163,16 @@ Groups are containers for multiple child shapes
 | `children`  | array | ✅ Yes        | Nested `shape2d` elements |
 
 
-##Stroke Object
-
+##Styling
+###Stroke Object
 ```
 "stroke": {
   "color": "#000",
   "width": 2,
-  "lineCap": "round",
-  "lineJoin": "miter",
+  "lineCap": "butt",       // "butt" | "round" | "square"
+  "lineJoin": "miter",     // "miter" | "round" | "bevel"
   "miterLimit": 4,
-  "dash": [4, 2],
+  "dash": [4, 2],          // pattern
   "dashOffset": 0
 }
 
@@ -182,5 +186,5 @@ Groups are containers for multiple child shapes
 | `miterLimit` | number | Used with `miter` joins           |
 | `dash`       | array  | Dash pattern                      |
 | `dashOffset` | number | Dash pattern offset               |
-
+Only color+width are commonly used; others are optional
 
